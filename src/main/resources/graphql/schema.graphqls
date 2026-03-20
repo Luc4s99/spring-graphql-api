@@ -1,0 +1,49 @@
+# TYPES
+type Biome {
+
+    uuid: ID!
+    name: String
+    location: String
+}
+
+type Species {
+
+    uuid: ID!
+    name: String
+    isEndemic: Boolean
+    biome: Biome
+}
+
+# INPUTS
+input BiomeInput {
+
+    uuid: ID
+    name: String
+    location: String
+}
+
+input SpeciesInput {
+
+    uuid: ID
+    name: String
+    isEndemic: Boolean
+    biome: BiomeInput
+}
+
+# QUERYS
+type Query {
+
+    getBiomes: [Biome]
+    getBiomeById(id: ID!): Biome
+    getSpecies: [Species]
+    getSpeciesById(id: ID!): Species
+}
+
+# MUTATIONS
+type Mutation {
+
+    addBiome(biome: BiomeInput): Biome
+    deleteBiome(uuid: ID): String
+    addSpecies(species: SpeciesInput): Species
+    deleteSpecies(uuid: ID): String
+}
